@@ -7,6 +7,8 @@ public class JumpScareTriggerScript : MonoBehaviour
     public GameObject JumpScareImg;
     public AudioSource scareAudioSouce;
 
+    private bool isPlayed = false;
+
     void Start()
     {
         JumpScareImg.SetActive(false);
@@ -16,9 +18,14 @@ public class JumpScareTriggerScript : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            JumpScareImg.SetActive(true);
-            scareAudioSouce.Play();
-            StartCoroutine(DisableImg());
+            if (!isPlayed)
+            {
+                JumpScareImg.SetActive(true);
+                scareAudioSouce.Play();
+                StartCoroutine(DisableImg());
+
+                isPlayed = true;
+            }
         }
     }
 
